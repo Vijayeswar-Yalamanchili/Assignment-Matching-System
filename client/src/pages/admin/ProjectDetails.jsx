@@ -19,12 +19,10 @@ function ProjectDetails() {
   const handleGetCurrentAssignment = async() => {
     try {
       setLoading(true)
-      let res = await AxiosService.get(`${ApiRoutes.ADMINCURRENTASSIGNMENT.path}/${userId}/${params.assignmentId}`)
-      console.log(res.data)
-      // setValidUrl(true);
-      // if(res.status === 200){
-      //     toast.success(res.data.message)
-      // }
+      let res = await AxiosService.get(`${ApiRoutes.ADMINCURRENTASSIGNMENT.path}/${params.assignmentId}/${userId}`, {headers : { 'Authorization' : `${getLoginToken}` }})
+      if(res.status === 200){
+          setassignmentName(res.data.currentassignment.name)
+      }
       setLoading(false)
     } catch (error) {
       toast.error(error.response.data.message || error.message)        
@@ -46,7 +44,7 @@ function ProjectDetails() {
                 <a href="/admin/dashboard" className="flex items-center text-base font-medium hover:text-primary dark:hover:text-primary text-dark dark:text-white">Dashboard</a>
                 <span className="px-3 text-body-color dark:text-dark-6">{" "}/{" "}</span>
               </li>
-              <li className="text-base font-medium text-body-color dark:text-dark-6">Project Name Details</li>
+              <li className="text-base font-medium text-body-color dark:text-dark-6">{assignmentName} - Task Details</li>
             </ul>
           </div>
         </div>

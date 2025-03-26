@@ -2,15 +2,18 @@ import AssignmentsModel from '../models/assignmentsModel.js'
 
 const addAssignments = async(req,res) => {
     try {
-        // console.log(req.body)
-        const { name,description,requirements, submissionGuidelines, startDate, endDate } = req.body    
-        const addAssignment = await AssignmentsModel.create({name : name, description : description, requirements : requirements, submissionGuidelines : submissionGuidelines, startDate : startDate, endDate : endDate})
+        console.log(req.body)
+        const { name,description,requirements, submissionGuidelines, startDate, endDate,taskAvailableStatus } = req.body   
+        console.log("first") 
+        const addAssignment = await AssignmentsModel.create({name : name, description : description, requirements : requirements, submissionGuidelines : submissionGuidelines, startDate : startDate, endDate : endDate, taskAvailableStatus : taskAvailableStatus})
+        console.log("sec") 
         res.status(200).send({
             addAssignment
         }) 
     } catch (error) {
         res.status(500).send({
-            message : "Internal server error in adding new product"
+            // message : "Internal server error in adding new product"
+            message : error
         })
     }
 }
@@ -21,7 +24,7 @@ const getAllAssignment = async(req,res) => {
         if(assignmentsList){
             // let productsCount = await ProductsModel.countDocuments()
             res.status(200).send({
-                productsList,
+                assignmentsList,
                 // productsCount
             })
         }

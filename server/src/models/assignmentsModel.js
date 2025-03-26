@@ -19,11 +19,15 @@ const assignmentSchema = new mongoose.Schema({
     },
     startDate: {
         type: Date,
-        default: Date.now, // Sets the default to the current timestamp
+        default: Date.now, 
     },
     endDate: {
         type: Date,
         required: true
+    },
+    taskAvailableStatus : {
+        type : String,
+        required : true
     },
 },
 { timestamps : true },

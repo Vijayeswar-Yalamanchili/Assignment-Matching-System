@@ -15,7 +15,7 @@ function Dashboard() {
     <div> 
       <div className='flex flex-row justify-between items-center px-8 mt-5'>
         <SearchBar/>
-        <button className="bg-blue-600 text-white px-4 py-2 rounded" onClick={() => dispatch(openModal())}>Open Modal</button>
+        <button className="bg-blue-600 text-white px-4 py-2 rounded" onClick={() => dispatch(openModal())}>Create Assignment</button>
         <AssignmentCreationModal />
       </div>
       <AssignmentLists/>

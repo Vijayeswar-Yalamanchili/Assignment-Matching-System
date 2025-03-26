@@ -5,6 +5,7 @@ import { closeModal } from "../../redux/modalSlice.js"
 import AxiosService from "../../utils/AxiosService.jsx"
 import ApiRoutes from "../../utils/ApiRoutes.jsx"
 import { jwtDecode } from "jwt-decode"
+import { format } from "date-fns"
 
 const AssignmentCreationModal = () => {
 
@@ -20,25 +21,23 @@ const AssignmentCreationModal = () => {
     submissionGuidelines: "",
     startDate: "",
     endDate: "",
+    taskAvailableStatus : "Open to work"
   })
 
-  if (!isOpen) return null;
+  if (!isOpen) return null
 
   const handleSubmit = async(e) => {
-    e.preventDefault();
-    // dispatch(addAssignment({ id: Date.now(), ...formData }))
-    // dispatch(closeModal());
+    e.preventDefault()
     try {
-      let res = await AxiosService.post(`${ApiRoutes.ADMINADDASSIGNMENTS.path}/${id}`, form,{ headers : { 'Authorization' : ` ${getLoginToken}`}})
-      console.log(res.data)
-      dispatch(addAssignment(res.data.addAssignment)); 
-      dispatch(closeModal());
+      let res = await AxiosService.post(`${ApiRoutes.ADMINADDASSIGNMENTS.path}/${id}`, form ,{ headers : { 'Authorization' : ` ${getLoginToken}`}})
+      dispatch(addAssignment(res.data.addAssignment))
+      dispatch(closeModal())
     } catch (error) {
-      console.error("Error:", error);
+      toast.error(error.response.data.message || error.message)
     }
-  };
+  }
 
-  return (
+  return <>
     <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 backdrop-blur-md">
       <div className="bg-white p-6 rounded-lg shadow-lg w-140 relative">
         <button onClick={() => dispatch(closeModal())} className="absolute top-3 right-3 text-gray-600 hover:text-gray-900">✖</button>
@@ -56,11 +55,12 @@ const AssignmentCreationModal = () => {
             <label>End Date</label>
             <input type="date" required className="w-full p-2 border rounded" onChange={(e) => setForm({ ...form, endDate: e.target.value.trim() })} />
           </div>
+
           <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded">Create</button>
         </form>
       </div>
     </div>
-  )
+  </>
 }
 
 export default AssignmentCreationModal

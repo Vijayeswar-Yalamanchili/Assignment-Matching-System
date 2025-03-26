@@ -15,6 +15,9 @@ const adminDashboardSlice = createSlice({
     addAssignment: (state, action) => {
         state.assignments.push(action.payload);
     },
+    setAssignments: (state, action) => {
+      state.list = action.payload;
+    },
     updateEvaluation: (state, action) => {
       const { id, evaluation } = action.payload;
       const assignment = state.assignments.find((a) => a.id === id);
@@ -25,5 +28,5 @@ const adminDashboardSlice = createSlice({
   },
 });
 
-export const { setSearchQuery,addAssignment, updateEvaluation} = adminDashboardSlice.actions;
+export const { setSearchQuery, addAssignment, setAssignments, updateEvaluation} = adminDashboardSlice.actions;
 export default adminDashboardSlice.reducer;
