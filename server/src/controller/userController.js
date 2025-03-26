@@ -1,5 +1,5 @@
 import UserAuthModel from '../models/userAuthModel.js'
-import ProductModel from '../models/productModel.js'
+// import ProductModel from '../models/productModel.js'
 
 const contact = async(req,res) => {
     try {
@@ -55,18 +55,18 @@ const userprofileUpdate = async(req,res) => {
     }
 }
 
-const getAllProducts = async(req,res) => {
-    try {
-        let productsList = await ProductModel.find()
-        res.status(200).send({
-            productsList
-        })
-    } catch (error) {
-        res.status(500).send({
-            message : "Internal server error in getting product list"
-        })
-    }
-}
+// const getAllProducts = async(req,res) => {
+//     try {
+//         let productsList = await ProductModel.find()
+//         res.status(200).send({
+//             productsList
+//         })
+//     } catch (error) {
+//         res.status(500).send({
+//             message : "Internal server error in getting product list"
+//         })
+//     }
+// }
 
 const addCartList = async(req,res) => {
     try {
@@ -156,32 +156,32 @@ const cartItemsList = async(req,res) => {
     }
 }
 
-const updateQuantity = async(req,res) => {
-    try {
-        const { value } = req.body
-        let product = await ProductModel.findById({_id : req.params.productId})
-        if(product){
-            let quantity = await ProductModel.findByIdAndUpdate({_id : req.params.productId}, {$set : {productQuantity : product.productQuantity + value}},{new : true})
-            res.status(200).send({
-                quantity
-            })
-        }        
-    } catch (error) {
-        res.status(500).send({
-            message : "Internal server error in getting product quantity"
-        })
-    }
-}
+// const updateQuantity = async(req,res) => {
+//     try {
+//         const { value } = req.body
+//         let product = await ProductModel.findById({_id : req.params.productId})
+//         if(product){
+//             let quantity = await ProductModel.findByIdAndUpdate({_id : req.params.productId}, {$set : {productQuantity : product.productQuantity + value}},{new : true})
+//             res.status(200).send({
+//                 quantity
+//             })
+//         }        
+//     } catch (error) {
+//         res.status(500).send({
+//             message : "Internal server error in getting product quantity"
+//         })
+//     }
+// }
 
 export default {
     contact,
     allUsers,
     currentUserData,
     userprofileUpdate,
-    getAllProducts,
+    // getAllProducts,
     addCartList,
     removeCartList,
     clearCartItems,
     cartItemsList,
-    updateQuantity
+    // updateQuantity
 }

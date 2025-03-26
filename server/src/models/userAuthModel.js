@@ -30,14 +30,6 @@ const userAuthSchema = new mongoose.Schema({
         type: String,
         required:[true,"Password is required"]
     },
-    // forgotPassToken:{
-    //     type : String,
-    //     required:[false,"required"]
-    // }, 
-    // emailHash:{
-    //     type:String,
-    //     required:[false,"required"]
-    // },
     isAdmin : {
         type:Boolean,
         default:false,
@@ -45,17 +37,7 @@ const userAuthSchema = new mongoose.Schema({
     isLoggedIn : {
         type:Boolean,
         default:false,
-    },
-    // addressList : [
-    //     {
-    //         address : String
-    //     }
-    // ],
-    // cartList : {
-    //     type : Array,
-    //     default: [],
-    //     required : false
-    // },
+    }
 },
 { timestamps : true },
 { collection : 'usersList' })

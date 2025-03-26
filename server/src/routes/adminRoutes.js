@@ -2,9 +2,7 @@ import express from 'express'
 import auth from '../helper/auth.js'
 import adminAuthController from '../controller/adminAuthController.js'
 import adminUserController from '../controller/adminUserController.js'
-import adminProductController from '../controller/adminProductController.js'
-// import productImageUpload from '../helper/productImageUpload.js'
-import adminOrderController from '../controller/adminOrderController.js'
+import adminAssignmentController from '../controller/adminAssignmentController.js'
 
 const router = express.Router()
 
@@ -14,18 +12,17 @@ router.post('/forgotpassword',adminAuthController.forgotPassword)
 router.put('/logout/:id',adminAuthController.logout)
 
 router.get('/allusers/:id',auth.adminAuthenticate,auth.adminGuard,adminUserController.allUsers)
-router.get('/currentuser/:userId/:id',auth.adminAuthenticate,adminUserController.currentUser)
+router.get('/getcurrentuser/:id', auth.adminAuthenticate, auth.adminGuard, adminUserController.getCurrentUser)
 router.put('/edituser/:userId/:id',auth.adminAuthenticate,adminUserController.editUser)
 router.delete('/deleteuser/:userId/:id',auth.adminAuthenticate,adminUserController.deleteUser)
 
-// router.post('/addproduct/:id', auth.adminAuthenticate,auth.adminGuard, productImageUpload.imageUpload.single('imagefile'),adminProductController.addProduct)
+router.get('/getallassignments/:id', auth.adminAuthenticate,auth.adminGuard, adminAssignmentController.getAllAssignment)
+router.get('/getcurrentassignment/:userId/:assignmentId',auth.adminAuthenticate,auth.adminGuard,adminAssignmentController.getCurrentassignment)
+router.post('/addassignment/:id', auth.adminAuthenticate,auth.adminGuard, adminAssignmentController.addAssignments) 
 // router.get('/getallproducts/:id', auth.adminAuthenticate, adminProductController.getAllProducts)
 // router.put('/editproduct/:id', auth.adminAuthenticate,productImageUpload.imageUpload.single('imagefile'), adminProductController.updateProduct)
 // router.delete('/deleteproduct/:id', auth.adminAuthenticate, adminProductController.removeProduct)
 
-router.get('/getallorders/:id', auth.adminAuthenticate, adminOrderController.getAllOrders)
-
-router.get('/getcurrentuser/:id', auth.adminAuthenticate, auth.adminGuard, adminUserController.getCurrentUser)
 router.put('/updatecurrentuser/:id', auth.adminAuthenticate, adminUserController.updateProfileData)
 
 export default router

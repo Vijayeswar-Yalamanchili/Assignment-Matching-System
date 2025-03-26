@@ -1,14 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+  assignments: [],
+  query: "",
+}
+
 const adminDashboardSlice = createSlice({
   name: "adminDashboard",
-  initialState: {
-    query: "",
-    assignments :  [
-      { id: 1, name: "E-commerce App", startDate: "2025-03-20", endDate: "2025-04-10", status: "Pending", evaluation: "Review" },
-      { id: 2, name: "Task Manager", startDate: "2025-03-22", endDate: "2025-04-12", status: "Submitted", evaluation: "Shortlisted" },
-    ]
-  },
+  initialState : initialState,
   reducers: {
     setSearchQuery: (state, action) => {
       state.query = action.payload;

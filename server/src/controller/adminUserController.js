@@ -19,18 +19,18 @@ const allUsers = async(req,res) => {
     }
 }
 
-const currentUser = async(req,res) => {
-    try {
-        let currentuser = await UserAuthModel.findById({_id : req.params.userId})
-        res.status(200).send({
-            currentuser
-        }) 
-    } catch (error) {
-        res.status(500).send({
-            message : "Internal error in fetching Users list"
-        })
-    }
-}
+// const currentassignment = async(req,res) => {
+//     try {
+//         let currentassignment = await UserAuthModel.findById({_id : req.params.userId})
+//         res.status(200).send({
+//             currentuser
+//         }) 
+//     } catch (error) {
+//         res.status(500).send({
+//             message : "Internal error in fetching Users list"
+//         })
+//     }
+// }
 
 const editUser = async(req,res) => {
     try {
@@ -86,7 +86,7 @@ const updateProfileData = async(req,res) => {
 
 export default {
     allUsers,
-    currentUser,
+    // currentassignment,
     editUser,
     deleteUser,
     getCurrentUser,

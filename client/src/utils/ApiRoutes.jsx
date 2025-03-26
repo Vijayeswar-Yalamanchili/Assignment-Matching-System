@@ -89,12 +89,16 @@ const ApiRoutes = {
         path : '/admin/logout',
         authenticate : true
     },
-    ADMINALLUSERS : {
-        path : '/admin/allusers',
+    ADMINADDASSIGNMENTS : {
+        path : '/admin/addassignment',
         authenticate : true
     },
-    ADMINCURRENTUSER : {
-        path : '/admin/currentuser',
+    ADMINALLASSIGNMENTS : {
+        path : '/admin/getallassignments',
+        authenticate : true
+    },
+    ADMINCURRENTASSIGNMENT : {
+        path : '/admin/getcurrentassignment',
         authenticate : true
     },
     ADMINPROFILEUSER : {
