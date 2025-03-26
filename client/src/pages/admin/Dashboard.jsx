@@ -9,9 +9,7 @@ import AssignmentLists from '../../components/admin/AssignmentLists.jsx';
 function Dashboard() {
 
   const dispatch = useDispatch()
-  const [isModalOpen, setModalOpen] = useState(false);
-  // const { assignments, searchQuery } = useSelector((state) => state.assignments)
-  // const filteredAssignments = assignments.filter(a => a.name.toLowerCase().includes(searchQuery.toLowerCase()))
+  const [isModalOpen, setModalOpen] = useState(false)
 
   return <>
     <AdminNavbar/>
