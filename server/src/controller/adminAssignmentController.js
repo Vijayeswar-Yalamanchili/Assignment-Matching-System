@@ -2,11 +2,11 @@ import AssignmentsModel from '../models/assignmentsModel.js'
 
 const addAssignments = async(req,res) => {
     try {
-        console.log(req.body)
+        // console.log(req.body)
         const { name,description,requirements, submissionGuidelines, startDate, endDate,taskAvailableStatus } = req.body   
-        console.log("first") 
+        // console.log("first") 
         const addAssignment = await AssignmentsModel.create({name : name, description : description, requirements : requirements, submissionGuidelines : submissionGuidelines, startDate : startDate, endDate : endDate, taskAvailableStatus : taskAvailableStatus})
-        console.log("sec") 
+        // console.log("sec") 
         res.status(200).send({
             addAssignment
         }) 
@@ -65,7 +65,7 @@ const getAllAssignment = async(req,res) => {
 
 const getCurrentassignment = async(req,res) => {
     try {
-        console.log(req.params)
+        // console.log(req.params)
         let currentassignment = await AssignmentsModel.findById({_id : req.params.userId})
         res.status(200).send({
             currentassignment

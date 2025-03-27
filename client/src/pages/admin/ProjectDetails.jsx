@@ -11,7 +11,7 @@ function ProjectDetails() {
   
   const params = useParams()
   const [loading, setLoading] = useState(false)
-  const [assignmentName, setassignmentName] = useState("")
+  const [assignmentData, setassignmentData] = useState("")
   const getLoginToken = localStorage.getItem('adminLoginToken')
   let decodedToken = jwtDecode(getLoginToken)
   let userId = decodedToken.id
@@ -21,7 +21,7 @@ function ProjectDetails() {
       setLoading(true)
       let res = await AxiosService.get(`${ApiRoutes.ADMINCURRENTASSIGNMENT.path}/${params.assignmentId}/${userId}`, {headers : { 'Authorization' : `${getLoginToken}` }})
       if(res.status === 200){
-          setassignmentName(res.data.currentassignment.name)
+          setassignmentData(res.data.currentassignment.name)
       }
       setLoading(false)
     } catch (error) {
@@ -31,7 +31,7 @@ function ProjectDetails() {
 
   useEffect(() => {
     handleGetCurrentAssignment()
-    }, [assignmentName])
+  }, [assignmentData])
 
   return <>
     <AdminNavbar />
@@ -44,7 +44,7 @@ function ProjectDetails() {
                 <a href="/admin/dashboard" className="flex items-center text-base font-medium hover:text-primary dark:hover:text-primary text-dark dark:text-white">Dashboard</a>
                 <span className="px-3 text-body-color dark:text-dark-6">{" "}/{" "}</span>
               </li>
-              <li className="text-base font-medium text-body-color dark:text-dark-6">{assignmentName} - Task Details</li>
+              <li className="text-base font-medium text-body-color dark:text-dark-6">{assignmentData} - Task Details</li>
             </ul>
           </div>
         </div>
