@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import ApiRoutes from '../../utils/ApiRoutes'
 import AxiosService from '../../utils/AxiosService'
@@ -68,6 +68,10 @@ function AssignmentLists() {
                                     {/* {assignment.taskAvailableStatus} */}
                                     {new Date(assignment.endDate) < new Date() ? "Closed" : assignment.taskAvailableStatus}
                                 </p>
+                            </div>
+                            <div className='flex flex-row justify-between'>
+                                <Link to={`/admin/submissons/${assignment._id}`}><p className="text-lg text-gray-500 mr-2">Submissions : </p></Link>
+                                <p className="text-sm text-gray-500 mr-2">{assignment.taskSubmittedBy.length}</p>
                             </div>
                             <div className='mt-4'>
                                 <button onClick={(e)=> handleProjectDetails(assignment._id)} className={`px-4 py-2 w-full rounded-lg text-white font-semibold ${assignment.taskAvailableStatus === "Open to work" ? "bg-blue-500 hover:bg-blue-600 cursor-pointer" : "bg-gray-400 cursor-not-allowed"}`} disabled={assignment.taskAvailableStatus === "Closed"}>{assignment.taskAvailableStatus === "Open to work" ? "View Details" : "Closed"}</button>

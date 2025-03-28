@@ -17,7 +17,7 @@ router.put('/edituser/:userId/:id',auth.adminAuthenticate,adminUserController.ed
 router.delete('/deleteuser/:userId/:id',auth.adminAuthenticate,adminUserController.deleteUser)
 
 router.get('/getallassignments/:id', auth.adminAuthenticate,auth.adminGuard, adminAssignmentController.getAllAssignment)
-router.get('/getcurrentassignment/:userId/:assignmentId',auth.adminAuthenticate,auth.adminGuard,adminAssignmentController.getCurrentassignment)
+router.get('/getcurrentassignment/:assignmentId/:userId',auth.adminAuthenticate,auth.adminGuard,adminAssignmentController.getCurrentassignment)
 router.post('/addassignment/:id', auth.adminAuthenticate,auth.adminGuard, adminAssignmentController.addAssignments) 
 // router.get('/getallproducts/:id', auth.adminAuthenticate, adminProductController.getAllProducts)
 // router.put('/editproduct/:id', auth.adminAuthenticate,productImageUpload.imageUpload.single('imagefile'), adminProductController.updateProduct)

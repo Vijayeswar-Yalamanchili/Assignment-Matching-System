@@ -16,6 +16,7 @@ const AdminForgotPasswordPage = lazy(()=> import('../pages/admin/ForgotPassword'
 const AdminDashboard = lazy(()=> import('../pages/admin/Dashboard'))
 const AdminProfilePage = lazy(()=> import('../pages/admin/Profile'))
 const AdminProjectDetails = lazy(()=> import('../pages/admin/ProjectDetails'))
+const AdminSubmissionsPage = lazy(()=> import('../pages/admin/Submissions'))
 
 const Approutes = [
     {
@@ -76,6 +77,11 @@ const Approutes = [
     {
         path : '/admin/profile',
         element : <Suspense fallback={<LoadingComponent/>}><AdminProfilePage/></Suspense>,
+        exact : true
+    },
+    {
+        path : '/admin/submissons/:assignmentId',
+        element : <Suspense fallback={<LoadingComponent/>}><AdminSubmissionsPage/></Suspense>,
         exact : true
     },
     {

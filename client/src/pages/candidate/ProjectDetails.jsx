@@ -7,13 +7,13 @@ import AxiosService from "../../utils/AxiosService";
 import ApiRoutes from "../../utils/ApiRoutes";
 import { jwtDecode } from "jwt-decode";
 import Breadcrumb from "../../components/candidate/Breadcrumb";
-import TaskDataAccordion from "../../components/TaskDataAccordion";
+import TaskDataAccordion from "../../components/candidate/TaskDataAccordion";
 
 function ProjectDetails() {
   
   const params = useParams()
   const [loading, setLoading] = useState(false)
-  const [assignmentData, setassignmentData] = useState("")
+  const [assignmentNameData, setAssignmentNameData] = useState("")
   const [assignmentDetails, setassignmentDetails] = useState("")
   const getLoginToken = localStorage.getItem('loginToken')
   let decodedToken = jwtDecode(getLoginToken)
@@ -25,7 +25,7 @@ function ProjectDetails() {
       let res = await AxiosService.get(`${ApiRoutes.CURRENTASSIGNMENT.path}/${params.assignmentId}/${userId}`, {headers : { 'Authorization' : `${getLoginToken}` }})
       if(res.status === 200){
         setassignmentDetails(res.data.currentassignment)
-        setassignmentData(res.data.currentassignment.name)
+        setAssignmentNameData(res.data.currentassignment.name)
       }
       setLoading(false)
     } catch (error) {
@@ -37,11 +37,11 @@ function ProjectDetails() {
 
   useEffect(() => {
     handleGetCurrentAssignment()
-  }, [assignmentData])
+  }, [assignmentNameData])
 
   return <>
     <AdminNavbar />
-    <Breadcrumb assignmentData={assignmentData}/>
+    <Breadcrumb assignmentNameData={assignmentNameData}/>
     <TaskDataAccordion assignmentDetails={assignmentDetails}/>
     <AdminFooter />
   </>

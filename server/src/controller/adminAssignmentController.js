@@ -59,8 +59,8 @@ const getAllAssignment = async(req,res) => {
 
 const getCurrentassignment = async(req,res) => {
     try {
-        // console.log(req.params)
-        let currentassignment = await AssignmentsModel.findById({_id : req.params.userId})
+        console.log(req.params)
+        let currentassignment = await AssignmentsModel.findById({_id : req.params.assignmentId})
         res.status(200).send({
             currentassignment
         }) 

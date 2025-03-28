@@ -1,6 +1,6 @@
 import React from 'react'
 
-function AdminBreadcrumb({assignmentData}) {
+function AdminBreadcrumb({assignmentNameData}) {
   return <>
     <div>
       <div className="container">
@@ -11,7 +11,7 @@ function AdminBreadcrumb({assignmentData}) {
                 <a href="/admin/dashboard" className="flex items-center text-base font-medium hover:text-primary dark:hover:text-primary text-dark dark:text-white">Dashboard</a>
                 <span className="px-3 text-body-color dark:text-dark-6">{" "}/{" "}</span>
               </li>
-              <li className="text-base font-medium text-body-color dark:text-dark-6">{assignmentData} - Task Details</li>
+              <li className="text-base font-medium text-body-color dark:text-dark-6">{assignmentNameData} - Task Details</li>
             </ul>
           </div>
         </div>
