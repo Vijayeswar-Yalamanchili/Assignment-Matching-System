@@ -49,14 +49,14 @@ function AssignmentLists() {
         fetchAllAssignments()
     }, [dispatch,list])
 
-    const filteredAssignments = list.filter((assignment) =>assignment.name.toLowerCase().includes(query.toLowerCase()))
+    // const filteredAssignments = list.filter((assignment) =>assignment.name.toLowerCase().includes(query.toLowerCase()))
 
     return <>
         <div className="w-full p-8 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-16 mx-auto mt-6">
             {
-                filteredAssignments.length > 0 ?  filteredAssignments.map((assignment) => (
+                list && list.length >= 1 ?  list.map((assignment) => (
                         <div key={assignment._id} className="p-5 w-auto outline bg-white shadow rounded mb-4">
-                            <h3 className="font-semibold text-2xl">{assignment.name}</h3>
+                            <div className='h-16'><h3 className="font-semibold text-2xl">{assignment.name}</h3></div>
                             <div className='flex flex-row justify-between'>
                                 <p className="text-sm text-gray-500 mr-2">Task Start date : </p>
                                 <p className="text-sm text-gray-500 mr-2">{assignment.startDate ? format(new Date(assignment.startDate), 'dd-MM-yyyy') : ''}</p>
