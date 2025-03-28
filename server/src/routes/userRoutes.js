@@ -12,8 +12,8 @@ router.post('/forgotpassword',userAuthController.forgotPassword)
 router.put('/logout/:id',userAuthController.logout)
 
 // //user
-// router.put('/contact',userController.contact)
-// router.get('/allusers/:id', auth.authenticate,userController.allUsers)
+router.get('/getcurrentassignment/:userId/:assignmentId',auth.authenticate,userController.getCurrentassignment)
+router.get('/allassignments/:id', auth.authenticate,userController.allAssignments)
 router.get('/currentuser/:id', auth.authenticate,userController.currentUserData)
 // router.put('/profileupdate/:id', auth.authenticate,userController.userprofileUpdate)
 

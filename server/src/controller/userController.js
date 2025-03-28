@@ -1,27 +1,26 @@
+import AssignmentsModel from '../models/assignmentsModel.js'
 import UserAuthModel from '../models/userAuthModel.js'
-// import ProductModel from '../models/productModel.js'
 
-const contact = async(req,res) => {
+const getCurrentassignment = async(req,res) => {
     try {
-        const {userName ,email,mobile,description} = req.body
+        let currentassignment = await AssignmentsModel.findById({_id : req.params.userId})
         res.status(200).send({
-            message : "Thanks for Contacting us, We will revert you back!!!",
-        })
-        await adminToEmpEmailService(userName ,email,mobile,description)
-        await userToAdminEmailService(email)
+            currentassignment
+        }) 
     } catch (error) {
         res.status(500).send({
-            message : "Internal server error in sending your query"
+            message : "Internal error in fetching Users list"
         })
     }
 }
-
-const allUsers = async(req,res) => {
+const allAssignments = async(req,res) => {
     try {
-        const usersList = await UserAuthModel.find()
-        res.status(200).send({
-            usersList
-        })
+        let assignmentsList = await AssignmentsModel.find()
+        if(assignmentsList){
+            res.status(200).send({
+                assignmentsList
+            })
+        }
     } catch (error) {
         res.status(500).send({
             message : "Internal server error in getting users data"
@@ -174,8 +173,8 @@ const cartItemsList = async(req,res) => {
 // }
 
 export default {
-    contact,
-    allUsers,
+    getCurrentassignment,
+    allAssignments,
     currentUserData,
     userprofileUpdate,
     // getAllProducts,

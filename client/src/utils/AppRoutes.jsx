@@ -8,13 +8,14 @@ const RegisterPage = lazy(()=> import('../pages/candidate/Register'))
 const ForgotPasswordPage = lazy(()=> import('../pages/candidate/ForgotPassword'))
 const Dashboard = lazy(()=> import('../pages/candidate/Dashboard'))
 const ProfilePage = lazy(()=> import('../pages/candidate/Profile'))
+const ProjectDetails = lazy(()=> import('../pages/candidate/ProjectDetails'))
 
 const AdminLoginPage = lazy(()=> import('../pages/admin/Login'))
 const AdminRegisterPage = lazy(()=> import('../pages/admin/Register'))
 const AdminForgotPasswordPage = lazy(()=> import('../pages/admin/ForgotPassword'))
 const AdminDashboard = lazy(()=> import('../pages/admin/Dashboard'))
 const AdminProfilePage = lazy(()=> import('../pages/admin/Profile'))
-const ProjectDetails = lazy(()=> import('../pages/admin/ProjectDetails'))
+const AdminProjectDetails = lazy(()=> import('../pages/admin/ProjectDetails'))
 
 const Approutes = [
     {
@@ -48,6 +49,11 @@ const Approutes = [
         exact : true
     },
     {
+        path : '/projectDetails/:assignmentId',
+        element : <Suspense fallback={<LoadingComponent/>}><ProjectDetails/></Suspense>,
+        exact : true
+    },
+    {
         path : '/admin/',
         element : <Suspense fallback={<LoadingComponent/>}><AdminLoginPage/></Suspense>,
         exact : true
@@ -74,7 +80,7 @@ const Approutes = [
     },
     {
         path : '/admin/projectDetails/:assignmentId',
-        element : <Suspense fallback={<LoadingComponent/>}><ProjectDetails/></Suspense>,
+        element : <Suspense fallback={<LoadingComponent/>}><AdminProjectDetails/></Suspense>,
         exact : true
     },
     {

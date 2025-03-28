@@ -31,7 +31,6 @@ const authenticate = async(req,res,next) => {
         let payload = await decodeLoginToken(token)
         let currentTime = +new Date()
         if(Math.floor(currentTime/1000)<payload.exp){
-            console.log("first")
             next()
         }else{
             res.status(200).send({
@@ -59,8 +58,6 @@ const getUserEmail = async(req,res,next) => {
         })
     }
 }
-
-
 
 //role based
 const adminGuard = async(req,res,next) => {

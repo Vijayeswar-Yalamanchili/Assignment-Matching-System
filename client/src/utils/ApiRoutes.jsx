@@ -23,8 +23,12 @@ const ApiRoutes = {
         path : '/candidates/currentuser',
         authenticate : true
     },
-    ALLUSERS : {
-        path : '/candidates/allusers',
+    ALLASSIGNMENTS : {
+        path : '/candidates/allassignments',
+        authenticate : true
+    },
+    CURRENTASSIGNMENT : {
+        path : '/candidates/getcurrentassignment',
         authenticate : true
     },
     USERPROFILEUPDATE : {
