@@ -49,12 +49,12 @@ function AssignmentLists() {
         fetchAllAssignments()
     }, [dispatch,list])
 
-    // const filteredAssignments = list.filter((assignment) =>assignment.name.toLowerCase().includes(query.toLowerCase()))
+    const filteredAssignments = list.filter((assignment) =>assignment.name.toLowerCase().includes(query.toLowerCase()))
 
     return <>
         <div className="w-full p-8 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-16 mx-auto mt-6">
             {
-                list && list.length >= 1 ?  list.map((assignment) => (
+                filteredAssignments && filteredAssignments.length >= 1 ?  filteredAssignments.map((assignment) => (
                         <div key={assignment._id} className="p-5 w-auto outline bg-white shadow rounded mb-4">
                             <div className='h-16'><h3 className="font-semibold text-2xl">{assignment.name}</h3></div>
                             <div className='flex flex-row justify-between'>
