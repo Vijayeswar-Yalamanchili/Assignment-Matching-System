@@ -33,6 +33,8 @@ function ProjectDetails() {
     }
   }
 
+  
+
   useEffect(() => {
     handleGetCurrentAssignment()
   }, [assignmentData])

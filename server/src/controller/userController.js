@@ -1,5 +1,30 @@
 import AssignmentsModel from '../models/assignmentsModel.js'
 import UserAuthModel from '../models/userAuthModel.js'
+import SubmissionsModel from '../models/submissionsModel.js'
+
+const submittask = async(req,res) => {
+    try {
+        const {userName,userId,assignmentName, assignmentId, githubrepo, demolink, submissionDate } = req.body   
+        const submission = await SubmissionsModel.findOneAndUpdate(
+            { userId, assignmentId },
+            { userName, assignmentName, githubrepo, demolink, submissionDate },
+            { new: true, upsert: true } 
+        )
+        let assignmentsubmissionData = await AssignmentsModel.findOneAndUpdate(
+            { _id : req.body.assignmentId},
+            { $addToSet: { taskSubmittedBy : req.body.userId } }, 
+            { new: true, upsert: true  }
+        )
+        res.status(200).send({
+            submission,
+            assignmentsubmissionData
+        }) 
+    } catch (error) {console.log(error)
+        res.status(500).send({
+            message : "Internal server error in adding new product"
+        })
+    }
+}
 
 const getCurrentassignment = async(req,res) => {
     try {
@@ -13,6 +38,7 @@ const getCurrentassignment = async(req,res) => {
         })
     }
 }
+
 const allAssignments = async(req,res) => {
     try {
         let assignmentsList = await AssignmentsModel.find()
@@ -41,146 +67,27 @@ const currentUserData = async(req,res) => {
     }
 }
 
-const userprofileUpdate = async(req,res) => {
-    try {
-        const updatedProfile = await UserAuthModel.findByIdAndUpdate({_id : req.params.id}, {$set : req.body},{new :true})
-        res.status(200).send({
-            updatedProfile
-        })
-    } catch (error) {
-        res.status(500).send({
-            message : "Internal server error in updating profile data"
-        })
-    }
-}
-
-// const getAllProducts = async(req,res) => {
+// const getSubmittedAssignment = async(req,res) => {
 //     try {
-//         let productsList = await ProductModel.find()
-//         res.status(200).send({
-//             productsList
-//         })
+//         console.log(req.params)
+//         // const {userId, assignmentId} = req.params
+//         let submittedAssignment = await AssignmentsModel.findById({_id : assignmentId})
+//         console.log(submittedAssignment)
+//         // res.status(200).send({
+//         //     submittedAssignment
+//         // })
 //     } catch (error) {
+//         console.log(error)
 //         res.status(500).send({
 //             message : "Internal server error in getting product list"
 //         })
 //     }
 // }
 
-const addCartList = async(req,res) => {
-    try {
-        let user = await UserAuthModel.findById({_id : req.params.id})
-        if(user){
-            if(!user.cartList.includes(req.params.productId)){
-                let addToCart = await UserAuthModel.findByIdAndUpdate({_id:req.params.id},{$push : {cartList : {productId : req.params.productId}}})
-                await ProductModel.findByIdAndUpdate({_id : req.params.productId}, {$set : {productQuantity : 1}},{new : true})
-                res.status(200).send({
-                    addToCart
-                })
-            }
-        }else{
-            res.status(400).send({
-                message : "Something went wrong in adding to cart"
-            })
-        }
-    } catch (error) {
-        res.status(500).send({
-            message : "Internal server error in adding to cart"
-        })
-    }
-}
-
-const removeCartList = async(req,res) => {
-    try {
-        let user = await UserAuthModel.findById({_id : req.params.id})
-        if(user){
-            if(!user.cartList.includes(req.params.productId)){
-                let removeFromCart = await UserAuthModel.findByIdAndUpdate({_id:req.params.id},{$pull : {cartList : {productId : req.params.productId}}})
-                await ProductModel.findByIdAndUpdate({_id : req.params.productId}, {$set : {productQuantity : 0}},{new : true})
-                res.status(200).send({
-                    removeFromCart
-                })
-            }
-        }else{
-            res.status(400).send({
-                message : "Something went wrong in removing to cart"
-            })
-        }
-    } catch (error) {
-        res.status(500).send({
-            message : "Internal server error in removing to cart"
-        })
-    }
-}
-
-const clearCartItems = async(req,res) => {
-    try {
-        // let user = await UserAuthModel.findById({_id : req.params.id})
-        // if(user){
-        //     if(!user.cartList.includes(req.params.productId)){
-                let clearCart = await UserAuthModel.findByIdAndUpdate({_id:req.params.id},{$set : {cartList : []}})
-                
-                res.status(200).send({
-                    clearCart
-                })
-        
-    } catch (error) {
-        res.status(500).send({
-            message : "Internal server error in clearing to cart"
-        })
-    }
-}
-
-const cartItemsList = async(req,res) => {
-    try {
-        let user = await UserAuthModel.findById({_id : req.params.id})
-        if(user) {
-            let cartItems = await Promise.all(
-                user.cartList.map((e) => {
-                    return ProductModel.findById(e.productId)
-                })
-            )
-            res.status(200).send({
-                cartItems
-            })
-        }else {
-            res.status(400).send({
-                message : "No Items in cart"
-            }) 
-        }        
-    } catch (error) {
-        res.status(500).send({
-            message : "Internal server error in getting product list"
-        })
-    }
-}
-
-// const updateQuantity = async(req,res) => {
-//     try {
-//         const { value } = req.body
-//         let product = await ProductModel.findById({_id : req.params.productId})
-//         if(product){
-//             let quantity = await ProductModel.findByIdAndUpdate({_id : req.params.productId}, {$set : {productQuantity : product.productQuantity + value}},{new : true})
-//             res.status(200).send({
-//                 quantity
-//             })
-//         }        
-//     } catch (error) {
-//         res.status(500).send({
-//             message : "Internal server error in getting product quantity"
-//         })
-//     }
-// }
-
 export default {
+    submittask,
     getCurrentassignment,
     allAssignments,
     currentUserData,
-    userprofileUpdate,
-    // getAllProducts,
-    addCartList,
-    removeCartList,
-    clearCartItems,
-    cartItemsList,
-    // updateQuantity
+    // getSubmittedAssignment,
 }

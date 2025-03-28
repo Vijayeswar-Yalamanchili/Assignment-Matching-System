@@ -15,8 +15,8 @@ const ApiRoutes = {
         path : '/candidates/logout',
         authenticate : true
     },
-    CONTACTUS : {
-        path : '/candidates/contact ',
+    SUBMITASSIGNMENT : {
+        path : '/candidates/submittask',
         authenticate : true
     },
     CURRENTUSER : {
@@ -31,50 +31,56 @@ const ApiRoutes = {
         path : '/candidates/getcurrentassignment',
         authenticate : true
     },
-    USERPROFILEUPDATE : {
-        path : '/candidates/profileupdate',
+    GETSUBMITTEDTASK : {
+        path : '/candidates/getsubmittedassignment',
         authenticate : true
     },
-    ADDADDRESS : {
-        path : '/candidates/addaddress',
-        authenticate : true
-    },
-    GETADDRESS : {
-        path : '/candidates/getaddress',
-        authenticate : true
-    },
-    EDITADDRESS : {
-        path : '/candidates/editaddress',
-        authenticate : true
-    },
-    DELETEADDRESS : {
-        path : '/candidates/deleteaddress',
-        authenticate : true
-    },
-    GETALLPRODUCTS : {
-        path : '/candidates/allproducts',
-        authenticate : true
-    },
-    ADDCARTLIST : {
-        path : '/candidates/addcart',
-        authenticate : true
-    },
-    REMOVECARTLIST : {
-        path : '/candidates/removecart',
-        authenticate : true
-    },
-    REMOVECARTITEMS : {
-        path : '/candidates/clearcart',
-        authenticate : true
-    },
-    GETCARTITEMS : {
-        path :'/candidates/cartitems',
-        authenticate : true
-    },
-    UPDATEQUANTITY : {
-        path :'/candidates/updatequantity',
-        authenticate : true
-    },
+
+
+    // USERPROFILEUPDATE : {
+    //     path : '/candidates/profileupdate',
+    //     authenticate : true
+    // },
+    // ADDADDRESS : {
+    //     path : '/candidates/addaddress',
+    //     authenticate : true
+    // },
+    // GETADDRESS : {
+    //     path : '/candidates/getaddress',
+    //     authenticate : true
+    // },
+    // EDITADDRESS : {
+    //     path : '/candidates/editaddress',
+    //     authenticate : true
+    // },
+    // DELETEADDRESS : {
+    //     path : '/candidates/deleteaddress',
+    //     authenticate : true
+    // },
+    // GETALLPRODUCTS : {
+    //     path : '/candidates/allproducts',
+    //     authenticate : true
+    // },
+    // ADDCARTLIST : {
+    //     path : '/candidates/addcart',
+    //     authenticate : true
+    // },
+    // REMOVECARTLIST : {
+    //     path : '/candidates/removecart',
+    //     authenticate : true
+    // },
+    // REMOVECARTITEMS : {
+    //     path : '/candidates/clearcart',
+    //     authenticate : true
+    // },
+    // GETCARTITEMS : {
+    //     path :'/candidates/cartitems',
+    //     authenticate : true
+    // },
+    // UPDATEQUANTITY : {
+    //     path :'/candidates/updatequantity',
+    //     authenticate : true
+    // },
 
     // ADMIN
     ADMINLOGIN : {
