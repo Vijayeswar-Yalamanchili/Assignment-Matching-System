@@ -41,12 +41,17 @@ const getCurrentassignment = async(req,res) => {
 
 const allAssignments = async(req,res) => {
     try {
-        let assignmentsList = await AssignmentsModel.find()
-        if(assignmentsList){
-            res.status(200).send({
-                assignmentsList
-            })
+        let allAssignmentsList = await AssignmentsModel.find()
+        if(allAssignmentsList){
+            let assignmentsList = await AssignmentsModel.updateMany(
+                { endDate: { $lt: new Date() } }, 
+                { $set: { taskAvailableStatus: "Closed" } }
+            )
+            console.log(assignmentsList)            
         }
+        res.status(200).send({
+            allAssignmentsList
+        })
     } catch (error) {
         res.status(500).send({
             message : "Internal server error in getting users data"

@@ -25,8 +25,8 @@ function AssignmentLists() {
         try {
             let res = await AxiosService.get(`${ApiRoutes.ALLASSIGNMENTS.path}/${userId}`, {headers : { 'Authorization' : `${getLoginToken}` }})
             if(res.status === 200) {
-                setList(res.data.assignmentsList)
-                dispatch(setAssignments(res.data.assignmentsList))
+                setList(res.data.allAssignmentsList)
+                dispatch(setAssignments(res.data.allAssignmentsList))
             }
         } catch (error) {
             toast.error(error.response.data.message || error.message)
@@ -59,7 +59,6 @@ function AssignmentLists() {
 
     useEffect(() => {
         fetchAllAssignments()
-        // getSubmittedDatas()
     }, [dispatch,list])
 
     const filteredAssignments = list.filter((assignment) =>assignment?.name?.toLowerCase().includes(query.toLowerCase()))
