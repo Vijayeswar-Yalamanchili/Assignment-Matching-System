@@ -6,6 +6,8 @@ import ApiRoutes from '../../utils/ApiRoutes'
 import AxiosService from '../../utils/AxiosService'
 import { jwtDecode } from 'jwt-decode'
 import { setAssignments } from '../../redux/adminDashboardSlice'
+import { openModal } from "../../redux/modalSlice.js"
+import AssignmentSubmitModal from '../../components/candidate/AssignmentSubmitModal'
 
 function AssignmentLists() {
 
@@ -70,7 +72,8 @@ function AssignmentLists() {
                             </div>
                             <div className='mt-4'>
                                 <button onClick={(e)=> handleProjectDetails(assignment._id)} className={`px-4 py-2 w-full rounded-lg font-semibold ${assignment.taskAvailableStatus === "Open to work" ? "outline outline-blue-500 bg-white text-black hover:bg-blue-600 hover:text-white cursor-pointer" : "bg-gray-400 cursor-not-allowed"}`} disabled={assignment.taskAvailableStatus === "Closed"}>{assignment.taskAvailableStatus === "Open to work" ? "View Details" : "Closed"}</button>
-                                <button type="button" className='mt-4 px-4 py-2 w-full rounded-lg font-semibold outline outline-green-500 bg-white text-black hover:bg-green-600 hover:text-white cursor-pointer'>Submit Task</button>
+                                <button type="button" onClick={() => dispatch(openModal())} className='mt-4 px-4 py-2 w-full rounded-lg font-semibold outline outline-green-500 bg-white text-black hover:bg-green-600 hover:text-white cursor-pointer'>Submit Task</button>
+                                <AssignmentSubmitModal/>
                             </div>
                         </div>
                     )) : <>

@@ -3,8 +3,6 @@ import { ChevronDown, ChevronUp } from "lucide-react"
 
 function TaskDataAccordion({assignmentDetails}) {
 
-
-    console.log(assignmentDetails)
     const [openIndex, setOpenIndex] = useState(null)
 
     const toggleAccordion = (index) => {
