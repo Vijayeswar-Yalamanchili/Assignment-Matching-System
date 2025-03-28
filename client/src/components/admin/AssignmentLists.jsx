@@ -67,10 +67,13 @@ function AssignmentLists() {
                             </div>
                             <div className='flex flex-row justify-between'>
                                 <p className="text-sm text-gray-500 mr-2">Status : </p>
-                                <p className={`text-sm ${assignment.taskAvailableStatus === "Open to work" ? "text-green-500" : assignment.taskAvailableStatus === "Closed" ? "text-red-500" : "text-gray-500"}`}>{assignment.taskAvailableStatus}</p>
+                                <p className={`text-sm ${new Date(assignment.endDate) < new Date() ? "text-red-500" : assignment.taskAvailableStatus === "Open to work" ? "text-green-500" : assignment.taskAvailableStatus === "Closed" ? "text-red-500" : "text-gray-500"}`}>
+                                    {/* {assignment.taskAvailableStatus} */}
+                                    {new Date(assignment.endDate) < new Date() ? "Closed" : assignment.taskAvailableStatus}
+                                </p>
                             </div>
                             <div className='mt-4'>
-                                <button onClick={(e)=> handleProjectDetails(assignment._id)} className={`px-4 py-2 w-full rounded-lg text-white font-semibold ${assignment.taskAvailableStatus === "Open to work" ? "bg-blue-500 hover:bg-blue-600 cursor-pointer" : "bg-gray-400 cursor-not-allowed"}`} disabled={assignment.taskAvailableStatus !== "Open to work"}>{assignment.taskAvailableStatus === "Open to work" ? "View Details" : "Closed"}</button>
+                                <button onClick={(e)=> handleProjectDetails(assignment._id)} className={`px-4 py-2 w-full rounded-lg text-white font-semibold ${assignment.taskAvailableStatus === "Open to work" ? "bg-blue-500 hover:bg-blue-600 cursor-pointer" : "bg-gray-400 cursor-not-allowed"}`} disabled={assignment.taskAvailableStatus === "Closed"}>{assignment.taskAvailableStatus === "Open to work" ? "View Details" : "Closed"}</button>
                             </div>
                         </div>
                     )) : <>
