@@ -32,10 +32,7 @@ function AssignmentLists() {
 
     const handleProjectDetails = async(assignmentId) => {
         try {
-            console.log(assignmentId)
-            // navigate(`/admin/projectDetails/${assignmentId}`)
             let res = await AxiosService.get(`${ApiRoutes.ADMINCURRENTASSIGNMENT.path}/${assignmentId}/${userId}`, {headers : { 'Authorization' : `${getLoginToken}` }})
-            console.log(res.data.currentassignment)
             if(res.status === 200){
                 navigate(`/admin/projectDetails/${assignmentId}`)
                 // setCurrentProjectCard(res.data.currentProjectCardData)
