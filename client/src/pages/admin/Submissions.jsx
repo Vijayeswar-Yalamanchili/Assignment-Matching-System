@@ -49,6 +49,7 @@ function Submissions() {
   }
 
   let gitRepo = currentSubmission?.githubrepo
+  let demolink = currentSubmission?.demolink
   let ratingData = currentSubmission?.rating
   let feedbackData = currentSubmission?.feedback
 
@@ -95,7 +96,7 @@ function Submissions() {
     </div>
     <AdminFooter/>
 
-    {isModalOpen && <ReviewModal assignmentId={params.assignmentId} currentSubmission ={currentSubmission} gitRepo ={gitRepo} ratingData={ratingData} feedbackData={feedbackData} submittedUser={submittedUser}/>}
+    {isModalOpen && <ReviewModal assignmentId={params.assignmentId} currentSubmission ={currentSubmission} gitRepo ={gitRepo} demolink={demolink} ratingData={ratingData} feedbackData={feedbackData} submittedUser={submittedUser}/>}
 
   </>
 }

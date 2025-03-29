@@ -1,42 +1,60 @@
-# Farm Kettle
-# MERN App
+# Assignment Matching System
 
 ## Overview
-Welcome to Farm Kettle, your one-stop shop for premium quality teabags! This e-commerce website allows users to browse through a variety of teabags, add products to their cart, and make secure payments.It features a user-friendly interface for both customers and administrators, ensuring a seamless experience for booking stays and managing properties.
-
-## Admin Link : https://farm-kettle.vercel.app/admin
-## User Link : https://farm-kettle.vercel.app/
-
+The **Assignment Matching System** is a web-based project management platform designed to streamline assignment creation, submission, and evaluation. This system allows candidates to view and submit assignments, while recruiters can manage assignments, track submissions, and evaluate candidates efficiently.
 
 ## Features
-- **UserSide**
-    - **User Authentication:** Secure login and registration process for users.
-    - **Forgot and Reset Password:** Functionality to reset passwords.
-    - **Product Browsing:** Browse through various teabag products.
-    - **Shopping Cart:** Add and remove products from the cart.
-    - **Quantity Adjustments:** Adjust the quantity of each product in the cart.
-    - **Payment:** Integrated payment gateway using Razorpay for secure transactions.
+### Candidate Features
+- View available assignments
+- Submit assignments with required files
+- Track submission status
 
-- **AdminSide**
-    - **Login and Registration:** Secure login and registration process for users.
-    - **Forgot and Reset Password:** Functionality to recover and reset passwords.
-    - **Admin Dashboard:** Manage products,users and user orders.
+### Recruiter Features
+- Create and manage assignments
+- View candidate submissions
+- Evaluate and shortlist candidates
 
 ## Technologies Used
-- **Frontend:**
-  - React.js
-  - Axios
-  - React Router Dom
+- **Frontend:** React, Redux, Tailwind CSS
+- **Backend:** Node.js, Express.js, MongoDB
+- **State Management:** Redux Toolkit
+- **Deployment:** Vercel (Frontend), Render (Backend)
 
-- **Backend:**
-  - Node.js
-  - Express.js
-  - MongoDB
-  - Mongoose
+## Live Demo
+- **Backend Deployment:** [Assignment Matching System API](https://assignment-matching-system.onrender.com)
+- **Frontend Deployment:**
+  - **Candidate Portal:** [Assignment Matching System - Candidate](https://assignment-matching-system.vercel.app)
+  - **Recruiter Portal:** [Assignment Matching System - Recruiter](https://assignment-matching-system.vercel.app/admin)
 
-- **Other Tools:**
-  - JWT for authentication
-  - bcrypt for password hashing
-  - Razorpay for payments
-  - Nodemailer
-  - Multer
+## Installation & Setup
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/Vijayeswar-Yalamanchili/Assignment-Matching-System.git
+   cd Assignment-Matching-System
+   ```
+
+2. **Backend Setup:**
+   ```sh
+   cd backend
+   npm install
+   npm start
+   ```
+
+3. **Frontend Setup:**
+   ```sh
+   cd frontend
+   npm install
+   npm start
+   ```
+
+## Contributing
+Contributions are welcome! Feel free to fork the repository and submit a pull request.
+
+## License
+This project is licensed under the MIT License.
+
+## Contact
+For any queries or issues, feel free to reach out:
+- **GitHub:** [Vijayeswar-Yalamanchili](https://github.com/Vijayeswar-Yalamanchili)
+- **Email:** [Your Email Here]
+

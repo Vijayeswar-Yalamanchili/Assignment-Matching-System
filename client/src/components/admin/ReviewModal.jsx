@@ -6,7 +6,7 @@ import { closeModal } from '../../redux/modalSlice'
 import ApiRoutes from '../../utils/ApiRoutes'
 import AxiosService from '../../utils/AxiosService'
 
-function ReviewModal({assignmentId,currentSubmission,gitRepo,ratingData,feedbackData,submittedUser}) {
+function ReviewModal({assignmentId,currentSubmission,gitRepo,demolink,ratingData,feedbackData,submittedUser}) {
 
     const dispatch = useDispatch()
     const [rating, setRating] = useState({
@@ -46,6 +46,10 @@ function ReviewModal({assignmentId,currentSubmission,gitRepo,ratingData,feedback
                 <div className='mt-3'>
                     <label>Github Repo :</label>
                     <input type="text" className="w-full border p-2 mt-2" value={gitRepo} readOnly/>
+                </div>
+                <div className='mt-3'>
+                    <label>Demo link :</label>
+                    <input type="text" className="w-full border p-2 mt-2" value={demolink} readOnly/>
                 </div>
                 <div className="mt-4">
                     {['codeQuality', 'functionality', 'responsiveness'].map(category => (
