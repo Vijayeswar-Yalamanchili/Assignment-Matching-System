@@ -61,6 +61,7 @@ function AdminLogin() {
                             <button className="bg-blue-500 hover:bg-blue-700 text-white  py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" disabled={loading}>{ loading ? <FontAwesomeIcon icon={faSpinner}/> : 'Login'}</button>
                             <Link to={'/admin/forgotpassword'} className="inline-block align-baseline text-sm text-blue-500 hover:text-blue-800">Forgot Password?</Link>
                         </div>
+                        <div className='text-center mt-3 text-lg'><Link to={'/admin/register'} className="inline-block align-baseline text-sm text-blue-500 hover:text-blue-800">New User? Register</Link></div>
                     </form>
                 </div>
             </> : <>
