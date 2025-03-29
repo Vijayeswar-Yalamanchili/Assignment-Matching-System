@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
-import { Button, Col, Container, Form, Row, Spinner } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
-import { useFormik } from 'formik'
 import { toast } from 'react-toastify'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import Navbar from '../../components/candidate/Navbar'
 import Footer from '../../components/candidate/Footer'
 import AxiosService from '../../utils/AxiosService'
 import ApiRoutes from '../../utils/ApiRoutes'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function Register() {
 
@@ -48,7 +47,7 @@ function Register() {
           }
           
         } catch (error) {
-            toast.error(error.response.data.message || error.message)
+          toast.error(error.response.data.message || error.message)
         }
     }
   })

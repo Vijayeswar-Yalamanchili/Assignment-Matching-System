@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { openModal } from "../../redux/modalSlice.js"
 import AdminNavbar from '../../components/admin/AdminNavbar'
-import { useDispatch, useSelector } from 'react-redux'
+import AdminFooter from '../../components/admin/AdminFooter'
 import SearchBar from '../../components/SearchBar'
 import AssignmentCreationModal from '../../components/admin/AssignmentCreationModal'
-import { openModal } from "../../redux/modalSlice.js"
 import AssignmentLists from '../../components/admin/AssignmentLists.jsx'
 
 function Dashboard() {
@@ -20,6 +21,7 @@ function Dashboard() {
       </div>
       <AssignmentLists/>
     </div>
+    <AdminFooter/>
   </>
 }
 

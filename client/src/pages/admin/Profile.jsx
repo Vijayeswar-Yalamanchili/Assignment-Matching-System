@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
-import AdminNavbar from '../../components/admin/AdminNavbar'
-import AdminFooter from '../../components/admin/AdminFooter'
 import { useDispatch, useSelector } from 'react-redux'
-import AxiosService from '../../utils/AxiosService'
-import ApiRoutes from '../../utils/ApiRoutes'
-import { fetchUserSuccess } from "../../redux/userSlice.js"
 import { jwtDecode } from 'jwt-decode'
 import { toast } from 'react-toastify'
+import { fetchUserSuccess } from "../../redux/userSlice.js"
+import AdminNavbar from '../../components/admin/AdminNavbar'
+import AdminFooter from '../../components/admin/AdminFooter'
+import AxiosService from '../../utils/AxiosService'
+import ApiRoutes from '../../utils/ApiRoutes'
 
 function Profile() {
 

@@ -2,13 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
-import ApiRoutes from '../../utils/ApiRoutes'
-import AxiosService from '../../utils/AxiosService'
+import { toast } from 'react-toastify'
 import { jwtDecode } from 'jwt-decode'
 import { setAssignments } from '../../redux/adminDashboardSlice'
-import { openModal } from "../../redux/modalSlice.js"
-import AssignmentSubmitModal from '../../components/candidate/AssignmentSubmitModal'
-import { toast } from 'react-toastify'
+import ApiRoutes from '../../utils/ApiRoutes'
+import AxiosService from '../../utils/AxiosService'
 
 function AssignmentLists() {
 
@@ -29,19 +27,6 @@ function AssignmentLists() {
                 dispatch(setAssignments(res.data.allAssignmentsList))
             }
         } catch (error) {
-            toast.error(error.response.data.message || error.message)
-        }
-    }
-
-    const getSubmittedDatas = async() => {
-        try {
-            let res = await AxiosService.get(`${ApiRoutes.GETSUBMITTEDTASK.path}/${userId}`, {headers : { 'Authorization' : `${getLoginToken}` }})
-            // console.log(res.data)
-            if(res.status === 200) {
-                setSubmittedAssignment(res.data)
-            }
-        } catch (error) {
-            console.log(error)
             toast.error(error.response.data.message || error.message)
         }
     }
@@ -80,17 +65,11 @@ function AssignmentLists() {
                             <div className='flex flex-row justify-between'>
                                 <p className="text-sm text-gray-500 mr-2">Status : </p>
                                 <p className={`text-sm ${new Date(assignment.endDate) < new Date() ? "text-red-500" : assignment.taskAvailableStatus === "Open to work" ? "text-green-500" : assignment.taskAvailableStatus === "Closed" ? "text-red-500" : "text-gray-500"}`}>
-                                    {/* {assignment.taskAvailableStatus} */}
                                     {new Date(assignment.endDate) < new Date() ? "Closed" : assignment.taskAvailableStatus}
                                 </p>
                             </div>
                             <div className='mt-4'>
                                 <button onClick={(e)=> handleProjectDetails(assignment._id)} className={`px-4 py-2 w-full rounded-lg font-semibold ${assignment.taskAvailableStatus === "Open to work" ? "outline outline-blue-500 bg-white text-black hover:bg-blue-600 hover:text-white cursor-pointer" : "bg-gray-400 cursor-not-allowed"}`} disabled={assignment.taskAvailableStatus === "Closed"}>{assignment.taskAvailableStatus === "Open to work" ? "View Details & Submit" : "Closed"}</button>
-                                {/* <button type="button" onClick={() => {
-                                    setSelectedAssignmentId(assignment._id)
-                                    dispatch(openModal())
-                                    }} className='mt-4 px-4 py-2 w-full rounded-lg font-semibold outline outline-green-500 bg-white text-black hover:bg-green-600 hover:text-white cursor-pointer'>Submit Task</button>
-                                <AssignmentSubmitModal assignmentId = {selectedAssignmentId}/> */}
                             </div>
                         </div>
                     )) : <>

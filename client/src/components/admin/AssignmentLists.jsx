@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
+import { jwtDecode } from 'jwt-decode'
+import { toast } from 'react-toastify'
+import { setAssignments } from '../../redux/adminDashboardSlice'
 import ApiRoutes from '../../utils/ApiRoutes'
 import AxiosService from '../../utils/AxiosService'
-import { jwtDecode } from 'jwt-decode'
-import { setAssignments } from '../../redux/adminDashboardSlice'
 
 function AssignmentLists() {
 
@@ -35,7 +36,6 @@ function AssignmentLists() {
             let res = await AxiosService.get(`${ApiRoutes.ADMINCURRENTASSIGNMENT.path}/${assignmentId}/${userId}`, {headers : { 'Authorization' : `${getLoginToken}` }})
             if(res.status === 200){
                 navigate(`/admin/projectDetails/${assignmentId}`)
-                // setCurrentProjectCard(res.data.currentProjectCardData)
             }
         } catch (error) {
             toast.error(error.response.data.message || error.message)
@@ -65,7 +65,6 @@ function AssignmentLists() {
                             <div className='flex flex-row justify-between'>
                                 <p className="text-sm text-gray-500 mr-2">Status : </p>
                                 <p className={`text-sm ${new Date(assignment.endDate) < new Date() ? "text-red-500" : assignment.taskAvailableStatus === "Open to work" ? "text-green-500" : assignment.taskAvailableStatus === "Closed" ? "text-red-500" : "text-gray-500"}`}>
-                                    {/* {assignment.taskAvailableStatus} */}
                                     {new Date(assignment.endDate) < new Date() ? "Closed" : assignment.taskAvailableStatus}
                                 </p>
                             </div>

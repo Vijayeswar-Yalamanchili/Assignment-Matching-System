@@ -2,10 +2,10 @@ import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addAssignment } from "../../redux/adminDashboardSlice.js"
 import { closeModal } from "../../redux/modalSlice.js"
+import { jwtDecode } from "jwt-decode"
 import AxiosService from "../../utils/AxiosService.jsx"
 import ApiRoutes from "../../utils/ApiRoutes.jsx"
-import { jwtDecode } from "jwt-decode"
-import { format } from "date-fns"
+import { toast } from "react-toastify"
 
 const AssignmentCreationModal = () => {
 
@@ -55,7 +55,6 @@ const AssignmentCreationModal = () => {
             <label>End Date</label>
             <input type="date" required className="w-full p-2 border rounded" onChange={(e) => setForm({ ...form, endDate: e.target.value.trim() })} />
           </div>
-
           <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded">Create</button>
         </form>
       </div>

@@ -31,60 +31,10 @@ const ApiRoutes = {
         path : '/candidates/getcurrentassignment',
         authenticate : true
     },
-    GETSUBMITTEDTASK : {
-        path : '/candidates/getsubmittedassignment',
-        authenticate : true
-    },
     CURRENTSUBMITTEDASSIGNMENT : {
         path : '/candidates/getcurrentsubmittedassignment',
         authenticate : true
     },
-
-
-    // USERPROFILEUPDATE : {
-    //     path : '/candidates/profileupdate',
-    //     authenticate : true
-    // },
-    // ADDADDRESS : {
-    //     path : '/candidates/addaddress',
-    //     authenticate : true
-    // },
-    // GETADDRESS : {
-    //     path : '/candidates/getaddress',
-    //     authenticate : true
-    // },
-    // EDITADDRESS : {
-    //     path : '/candidates/editaddress',
-    //     authenticate : true
-    // },
-    // DELETEADDRESS : {
-    //     path : '/candidates/deleteaddress',
-    //     authenticate : true
-    // },
-    // GETALLPRODUCTS : {
-    //     path : '/candidates/allproducts',
-    //     authenticate : true
-    // },
-    // ADDCARTLIST : {
-    //     path : '/candidates/addcart',
-    //     authenticate : true
-    // },
-    // REMOVECARTLIST : {
-    //     path : '/candidates/removecart',
-    //     authenticate : true
-    // },
-    // REMOVECARTITEMS : {
-    //     path : '/candidates/clearcart',
-    //     authenticate : true
-    // },
-    // GETCARTITEMS : {
-    //     path :'/candidates/cartitems',
-    //     authenticate : true
-    // },
-    // UPDATEQUANTITY : {
-    //     path :'/candidates/updatequantity',
-    //     authenticate : true
-    // },
 
     // ADMIN
     ADMINLOGIN : {
@@ -123,46 +73,10 @@ const ApiRoutes = {
         path : '/admin/reviewsubmission',
         authenticate : true
     },
-    // ADMINPROFILEUSER : {
-    //     path : '/admin/getcurrentuser',
-    //     authenticate : true
-    // },
-    // ADMINUPDATEPROFILEUSER : {
-    //     path : '/admin/updatecurrentuser',
-    //     authenticate : true
-    // },
-    // ADMINEDITUSER : {
-    //     path : '/admin/edituser',
-    //     authenticate : true
-    // },
-    // ADMINDELETEUSER : {
-    //     path : '/admin/deleteuser',
-    //     authenticate : true
-    // },
-    // ADMINADDPRODUCT : {
-    //     path : '/admin/addproduct',
-    //     authenticate : true
-    // },
-    // ADMINGETPRODUCT : {
-    //     path : '/admin/getallproducts',
-    //     authenticate : true
-    // },
-    // ADMINGETORDER : {
-    //     path : '/admin/getallorders',
-    //     authenticate : true
-    // },
-    // ADMINEDITPRODUCT : {
-    //     path : '/admin/editproduct',
-    //     authenticate : true
-    // },
-    // ADMINDELETEPRODUCT : {
-    //     path : '/admin/deleteproduct',
-    //     authenticate : true
-    // },
-    // ADMINGETALLORDERS : {
-    //     path :'/admin/myorders',
-    //     authenticate : false
-    // },
+    ADMINPROFILEUSER : {
+        path : '/admin/getcurrentuser',
+        authenticate : true
+    }
 }
 
 export default ApiRoutes

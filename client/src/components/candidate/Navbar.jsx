@@ -5,10 +5,10 @@ import { jwtDecode } from 'jwt-decode'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisVertical, faPowerOff } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
+import { useLogout } from '../../hooks/UseLogout'
 import logo from '../../assets/logo.png'
 import AxiosService from '../../utils/AxiosService'
 import ApiRoutes from '../../utils/ApiRoutes'
-import { useLogout } from '../../hooks/UseLogout'
 
 function Navbar() {
 
@@ -23,14 +23,14 @@ function Navbar() {
     
     const handleLogout = async() => {
         try {     
-          const decodedToken = jwtDecode(getLoginToken)
-          const id = decodedToken.id 
-          let res = await AxiosService.put(`${ApiRoutes.LOGOUT.path}/${id}`,{ headers : { 'Authorization' : ` ${getLoginToken}`}})
-          if(res.status === 200){
-            logout()
-          }
+            const decodedToken = jwtDecode(getLoginToken)
+            const id = decodedToken.id 
+            let res = await AxiosService.put(`${ApiRoutes.LOGOUT.path}/${id}`,{ headers : { 'Authorization' : ` ${getLoginToken}`}})
+            if(res.status === 200){
+                logout()
+            }
         } catch (error) {
-          toast.error(error.response.data.message || error.message)
+            toast.error(error.response.data.message || error.message)
         }
     }
 

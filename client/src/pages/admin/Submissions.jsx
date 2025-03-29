@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import ApiRoutes from '../../utils/ApiRoutes'
-import AxiosService from '../../utils/AxiosService'
 import { useDispatch, useSelector } from 'react-redux'
 import { jwtDecode } from 'jwt-decode'
+import { openModal } from '../../redux/modalSlice'
+import ApiRoutes from '../../utils/ApiRoutes'
+import AxiosService from '../../utils/AxiosService'
 import AdminNavbar from '../../components/admin/AdminNavbar'
 import AdminFooter from '../../components/admin/AdminFooter'
-import { openModal } from '../../redux/modalSlice'
 import ReviewModal from '../../components/admin/ReviewModal'
 
 function Submissions() {
@@ -37,7 +37,6 @@ function Submissions() {
   const handleReview = async (submittedUserId) => {
     try {
       let res = await AxiosService.get(`${ApiRoutes.ADMINGETSUBMITTEDTASK.path}/${params.assignmentId}/${submittedUserId}/${userId}`, { headers: { 'Authorization': `${getLoginToken}` } })
-      // console.log(res.data)
       setsubmittedUser(submittedUserId)
       dispatch(openModal())
       if (res.status === 200) {
@@ -45,14 +44,13 @@ function Submissions() {
         
       }
     } catch (error) {
-      toast.error(error.response?.data?.message || error.message);
+      toast.error(error.response?.data?.message || error.message)
     }
   }
 
   let gitRepo = currentSubmission?.githubrepo
   let ratingData = currentSubmission?.rating
   let feedbackData = currentSubmission?.feedback
-  // console.log(currentSubmission)
 
   useEffect(() => {
     handleGetCurrentAssignment()

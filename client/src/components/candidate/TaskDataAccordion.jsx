@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ChevronDown, ChevronUp } from "lucide-react"
-import AxiosService from '../../utils/AxiosService'
-import ApiRoutes from '../../utils/ApiRoutes'
 import { jwtDecode } from 'jwt-decode'
 import { toast } from 'react-toastify'
+import AxiosService from '../../utils/AxiosService'
+import ApiRoutes from '../../utils/ApiRoutes'
 
 function TaskDataAccordion({assignmentDetails, assignmentIdData}) {
 
@@ -52,13 +52,12 @@ function TaskDataAccordion({assignmentDetails, assignmentIdData}) {
 
     const handleGetCurrentSubmission = async() => {
         try {
-            console.log(assignmentIdData)
             let res = await AxiosService.get(`${ApiRoutes.CURRENTSUBMITTEDASSIGNMENT.path}/${assignmentIdData}/${userid}`, {headers : { 'Authorization' : `${getLoginToken}` }})
             if(res.status === 200){
                 setCurrentSubmittedAssignment(res.data.submittedAssignment)
             }
         } catch (error) {
-          toast.error(error.response.data.message || error.message)        
+            toast.error(error.response.data.message || error.message)        
         }
     }
 

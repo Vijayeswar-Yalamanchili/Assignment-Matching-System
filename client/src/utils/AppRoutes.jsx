@@ -2,7 +2,6 @@ import { lazy, Suspense } from "react"
 import LoadingComponent from "../components/LoadingComponent"
 import ErrorScreen from "../pages/ErrorScreen"
 
-const HomePage = lazy(()=> import('../pages/HomePage'))
 const LoginPage = lazy(()=> import('../pages/candidate/Login'))
 const RegisterPage = lazy(()=> import('../pages/candidate/Register'))
 const ForgotPasswordPage = lazy(()=> import('../pages/candidate/ForgotPassword'))
@@ -19,11 +18,6 @@ const AdminProjectDetails = lazy(()=> import('../pages/admin/ProjectDetails'))
 const AdminSubmissionsPage = lazy(()=> import('../pages/admin/Submissions'))
 
 const Approutes = [
-    {
-        path : '/home',
-        element : <Suspense fallback={<LoadingComponent/>}><HomePage/></Suspense>,
-        exact : true
-    },
     {
         path : '/',
         element : <Suspense fallback={<LoadingComponent/>}><LoginPage/></Suspense>,

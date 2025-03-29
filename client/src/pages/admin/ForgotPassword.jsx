@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
-import { Container, Col, Form, Button, Spinner } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import AdminNavbar from '../../components/admin/AdminNavbar'
 import AdminFooter from '../../components/admin/AdminFooter'
 import AxiosService from '../../utils/AxiosService'
 import ApiRoutes from '../../utils/ApiRoutes'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 function ForgotPassword() {
 

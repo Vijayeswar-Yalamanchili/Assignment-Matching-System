@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
-import Navbar from '../../components/candidate/Navbar'
-import Footer from '../../components/candidate/Footer'
 import { useDispatch, useSelector } from 'react-redux'
-import AxiosService from '../../utils/AxiosService'
-import ApiRoutes from '../../utils/ApiRoutes'
-import { fetchUserSuccess } from "../../redux/userSlice.js"
 import { jwtDecode } from 'jwt-decode'
 import { toast } from 'react-toastify'
+import { fetchUserSuccess } from "../../redux/userSlice.js"
+import Navbar from '../../components/candidate/Navbar'
+import Footer from '../../components/candidate/Footer'
+import AxiosService from '../../utils/AxiosService'
+import ApiRoutes from '../../utils/ApiRoutes'
 
 function Profile() {
 
@@ -23,7 +23,7 @@ function Profile() {
         dispatch(fetchUserSuccess(res.data.currentUser))
       }
     } catch (error) {
-        toast.error(error.response.data.message || error.message)
+      toast.error(error.response.data.message || error.message)
     }
   }
 

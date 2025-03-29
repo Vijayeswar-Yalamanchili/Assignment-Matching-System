@@ -5,7 +5,7 @@ import userErrorScreenAnime from '../assets/userErrorScreenAnime.svg'
 
 function UserErrorScreen() {
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleErrorPage = () => {
     let getToken = localStorage.getItem('loginToken')
