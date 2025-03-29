@@ -51,8 +51,7 @@ const allAssignments = async(req,res) => {
             let assignmentsList = await AssignmentsModel.updateMany(
                 { endDate: { $lt: new Date() } }, 
                 { $set: { taskAvailableStatus: "Closed" } }
-            )
-            console.log(assignmentsList)            
+            )           
         }
         res.status(200).send({
             allAssignmentsList
@@ -77,27 +76,28 @@ const currentUserData = async(req,res) => {
     }
 }
 
-// const getSubmittedAssignment = async(req,res) => {
-//     try {
-//         console.log(req.params)
-//         // const {userId, assignmentId} = req.params
-//         let submittedAssignment = await AssignmentsModel.findById({_id : assignmentId})
-//         console.log(submittedAssignment)
-//         // res.status(200).send({
-//         //     submittedAssignment
-//         // })
-//     } catch (error) {
-//         console.log(error)
-//         res.status(500).send({
-//             message : "Internal server error in getting product list"
-//         })
-//     }
-// }
+const getCurrentSubmittedAssignment = async(req,res) => {
+    try {
+        console.log(req.params) 
+        const {userid, assignmentId} = req.params
+        // let submittedAssignment = await SubmissionsModel.findOne({ assignmentId : assignmentId,userId:userid})
+        let submittedAssignment = await SubmissionsModel.findOne({ userId : userid, assignmentId: assignmentId })
+        console.log(submittedAssignment)
+        res.status(200).send({
+            submittedAssignment 
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            message : "Internal server error in getting product list"
+        })
+    }
+}
 
 export default {
     submittask,
     getCurrentassignment,
     allAssignments,
     currentUserData,
-    // getSubmittedAssignment,
+    getCurrentSubmittedAssignment,
 }

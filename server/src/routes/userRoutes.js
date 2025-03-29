@@ -15,6 +15,6 @@ router.post('/submittask/:userId/:assignmentId',auth.authenticate,userController
 router.get('/getcurrentassignment/:userId/:assignmentId',auth.authenticate,userController.getCurrentassignment)
 router.get('/allassignments/:id', auth.authenticate,userController.allAssignments)
 router.get('/currentuser/:id', auth.authenticate,userController.currentUserData)
-// router.get('/getsubmittedassignment/:assignmentId/:userid', auth.authenticate,userController.getSubmittedAssignment)
+router.get('/getcurrentsubmittedassignment/:assignmentId/:userid', auth.authenticate,userController.getCurrentSubmittedAssignment)
 
 export default router

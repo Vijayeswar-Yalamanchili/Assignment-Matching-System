@@ -35,7 +35,10 @@ const ApiRoutes = {
         path : '/candidates/getsubmittedassignment',
         authenticate : true
     },
-    
+    CURRENTSUBMITTEDASSIGNMENT : {
+        path : '/candidates/getcurrentsubmittedassignment',
+        authenticate : true
+    },
 
 
     // USERPROFILEUPDATE : {

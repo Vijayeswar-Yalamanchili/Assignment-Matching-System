@@ -15,6 +15,7 @@ function ProjectDetails() {
   const [loading, setLoading] = useState(false)
   const [assignmentNameData, setAssignmentNameData] = useState("")
   const [assignmentDetails, setassignmentDetails] = useState("")
+  const [assignmentIdData, setAssignmentIdData] = useState(null)
   const getLoginToken = localStorage.getItem('loginToken')
   let decodedToken = jwtDecode(getLoginToken)
   let userId = decodedToken.id
@@ -26,14 +27,13 @@ function ProjectDetails() {
       if(res.status === 200){
         setassignmentDetails(res.data.currentassignment)
         setAssignmentNameData(res.data.currentassignment.name)
+        setAssignmentIdData(res.data.currentassignment._id)
       }
       setLoading(false)
     } catch (error) {
       toast.error(error.response.data.message || error.message)        
     }
-  }
-
-  
+  }  
 
   useEffect(() => {
     handleGetCurrentAssignment()
@@ -42,7 +42,7 @@ function ProjectDetails() {
   return <>
     <AdminNavbar />
     <Breadcrumb assignmentNameData={assignmentNameData}/>
-    <TaskDataAccordion assignmentDetails={assignmentDetails}/>
+    <TaskDataAccordion assignmentDetails={assignmentDetails} assignmentIdData={params.assignmentId}/>
     <AdminFooter />
   </>
 }

@@ -6,18 +6,17 @@ import ApiRoutes from '../../utils/ApiRoutes'
 import { jwtDecode } from 'jwt-decode'
 import { toast } from 'react-toastify'
 
-function TaskDataAccordion({assignmentDetails}) {
+function TaskDataAccordion({assignmentDetails, assignmentIdData}) {
 
     let navigate = useNavigate()
     const [openIndex, setOpenIndex] = useState(null)
     const [formData, setFormData] = useState({ githubrepo: "", demolink: "" })
     const [isFormOpen, setIsFormOpen] = useState(false)
-    // const [submittedAssignment, setSubmittedAssignment] = useState(null)
+    const [currentSubmittedAssignment, setCurrentSubmittedAssignment] = useState(null)
     const getLoginToken = localStorage.getItem('loginToken')
     let decodedToken = jwtDecode(getLoginToken)
     let userid = decodedToken.id
-    let assignmentID = assignmentDetails && assignmentDetails._id
-    // console.log(assignmentID)
+    let assignmentID = assignmentDetails && assignmentDetails?._id
 
     const toggleAccordion = (index) => {
         setOpenIndex(openIndex === index ? null : index)
@@ -51,35 +50,27 @@ function TaskDataAccordion({assignmentDetails}) {
         }
     }
 
-    // const getSubmittedDatas = async() => {
-    //         try {
-    //             let assignmentid = assignmentDetails && assignmentDetails._id
-
-    //             if(assignmentid !== undefined){
-    //                 console.log(assignmentid)
-    //                 let res = await AxiosService.get(`${ApiRoutes.GETSUBMITTEDTASK.path}/${assignmentid}/${userid}`, {headers : { 'Authorization' : `${getLoginToken}` }})
-    //                 console.log(res.data)
-    //             //     // if(res.status === 200) {
-    //             //     //     setSubmittedAssignment(res.data)
-    //             //     // }
-    //             }
-    //             //  else {
-    //             //     getSubmittedDatas()
-    //             // }
-    //         } catch (error) {
-    //             toast.error(error.response.data.message || error.message)
-    //         }
-    // }
-
-    // useEffect(()=> {
-    //     getSubmittedDatas()
-    // })
+    const handleGetCurrentSubmission = async() => {
+        try {
+            console.log(assignmentIdData)
+            let res = await AxiosService.get(`${ApiRoutes.CURRENTSUBMITTEDASSIGNMENT.path}/${assignmentIdData}/${userid}`, {headers : { 'Authorization' : `${getLoginToken}` }})
+            if(res.status === 200){
+                setCurrentSubmittedAssignment(res.data.submittedAssignment)
+            }
+        } catch (error) {
+          toast.error(error.response.data.message || error.message)        
+        }
+    }
 
     const accordionItems = [
         { title: "Description", content: `${assignmentDetails.description}`},
         { title: "Requirements", content: `${assignmentDetails.requirements}` },
         { title: "Submission Methods", content: `${assignmentDetails.submissionGuidelines}`}    
     ]
+
+    useEffect(()=> {
+        handleGetCurrentSubmission()
+    },[])
 
     return <>
         <div className="w-full px-25 mx-auto mb-16">
@@ -98,6 +89,23 @@ function TaskDataAccordion({assignmentDetails}) {
                     </div>
                 ))
             }
+
+            {currentSubmittedAssignment?.feedback && (
+                <div className="border-b border-gray-300 mt-4">
+                    <button className="flex justify-between items-center w-full p-4 text-lg font-medium text-left bg-gray-100 hover:bg-gray-200 transition"
+                        onClick={() => toggleAccordion("feedback")}>
+                        Feedback
+                        {openIndex === "feedback" ? <ChevronUp className="w-5 h-10" /> : <ChevronDown className="w-5 h-10" />}
+                    </button>
+                    {openIndex === "feedback" && (
+                        <div className="p-4 bg-white text-gray-700 border-t border-gray-200">
+                            {currentSubmittedAssignment?.feedback}
+                        </div>
+                    )}
+                </div>
+            )}
+
+
             <div className="border-b border-gray-300 mt-4">
                 <button className="flex justify-between items-center w-full p-4 text-lg font-medium text-left bg-gray-100 hover:bg-gray-200 transition" onClick={toggleFormAccordion}>
                     {isFormOpen ? "Task Submission" : "Task Submission"} 
