@@ -30,7 +30,7 @@ const assignmentSchema = new mongoose.Schema({
         required : true
     },
     taskSubmittedBy : {
-        type: [String],
+        type: [{ userId: String, userName: String }],
         default: [] 
     }
 },

@@ -5,6 +5,8 @@ import ApiRoutes from '../../utils/ApiRoutes'
 import AxiosService from '../../utils/AxiosService'
 import { useDispatch } from 'react-redux'
 import { jwtDecode } from 'jwt-decode'
+import AdminNavbar from '../../components/admin/AdminNavbar'
+import AdminFooter from '../../components/admin/AdminFooter'
 
 function Submissions() {
   
@@ -32,20 +34,26 @@ function Submissions() {
   }, [])
 
   return <>
+    <AdminNavbar/>
     <div className="p-4">
-      <h2 className="text-lg font-semibold">{assignmentDetails.name} - Submitted By:</h2>
+      <h2 className="text-lg font-semibold mb-5">{assignmentDetails.name} - Submitted By:</h2>
       {
-        assignmentDetails.taskSubmittedBy ? (
+        assignmentDetails?.taskSubmittedBy && assignmentDetails.taskSubmittedBy.length > 0 ? <>
           <ol className="list-decimal ml-6">
-            {assignmentDetails.taskSubmittedBy.map((id, index) => (
-              <li key={index} className="text-gray-800">{id}</li>
-            ))}
+            {
+              assignmentDetails.taskSubmittedBy.map((user) => {
+                return <li key={user._id} className="text-gray-800">
+                  {user.userName} {'=>'}  {user.userId}
+                </li>
+              })
+            }
           </ol>
-        ) : (
-          <p>Loading...</p>
-        )
+        </> : <>
+          <p>No submissions yet.</p>
+        </>
       }
     </div>
+    <AdminFooter/>
   </>
 }
 

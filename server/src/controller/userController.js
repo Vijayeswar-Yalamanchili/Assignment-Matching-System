@@ -5,6 +5,11 @@ import SubmissionsModel from '../models/submissionsModel.js'
 const submittask = async(req,res) => {
     try {
         const {userName,userId,assignmentName, assignmentId, githubrepo, demolink, submissionDate } = req.body   
+        const assignment = await AssignmentsModel.findOne({ assignmentId })
+
+        if (assignment && assignment.taskSubmittedBy.some(user => user.userId === userId)) {
+            return res.status(400).send({ message: "User has already submitted this assignment." })
+        }
         const submission = await SubmissionsModel.findOneAndUpdate(
             { userId, assignmentId },
             { userName, assignmentName, githubrepo, demolink, submissionDate },
@@ -12,7 +17,7 @@ const submittask = async(req,res) => {
         )
         let assignmentsubmissionData = await AssignmentsModel.findOneAndUpdate(
             { _id : req.body.assignmentId},
-            { $addToSet: { taskSubmittedBy : req.body.userId } }, 
+            { $addToSet: { taskSubmittedBy : {userId,userName} } }, 
             { new: true, upsert: true  }
         )
         res.status(200).send({
