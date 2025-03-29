@@ -21,7 +21,7 @@ function ReviewModal({assignmentId,currentSubmission,gitRepo,ratingData,feedback
     let userId = decodedToken.id
 
     const handleCompleted = async () => {
-        const cumulativerating = (rating.codeQuality + rating.functionality + rating.responsiveness) / 3;
+        const cumulativerating = (ratingData.codeQuality + ratingData.functionality + ratingData.responsiveness) / 3;
         let result = cumulativerating >= 70 ? 'Shortlisted' : 'Not Shortlisted';
         let reviewBody = {
             assignmentId: assignmentId,
