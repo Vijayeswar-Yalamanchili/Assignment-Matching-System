@@ -17,7 +17,7 @@ const submittask = async(req,res) => {
         )
         let assignmentsubmissionData = await AssignmentsModel.findOneAndUpdate(
             { _id : req.body.assignmentId},
-            { $addToSet: { taskSubmittedBy : {userId,userName} } }, 
+            { $addToSet: { taskSubmittedBy : {userId,userName,taskStatus: "Submitted" } } }, 
             { new: true, upsert: true  }
         )
         res.status(200).send({

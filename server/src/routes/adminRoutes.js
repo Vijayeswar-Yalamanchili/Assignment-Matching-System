@@ -19,7 +19,8 @@ router.delete('/deleteuser/:userId/:id',auth.adminAuthenticate,adminUserControll
 router.get('/getallassignments/:id', auth.adminAuthenticate,auth.adminGuard, adminAssignmentController.getAllAssignment)
 router.get('/getcurrentassignment/:assignmentId/:userId',auth.adminAuthenticate,auth.adminGuard,adminAssignmentController.getCurrentassignment)
 router.post('/addassignment/:id', auth.adminAuthenticate,auth.adminGuard, adminAssignmentController.addAssignments) 
-// router.get('/getallproducts/:id', auth.adminAuthenticate, adminProductController.getAllProducts)
+router.get('/getsubmittedassignment/:assignmentId/:submittedUserId/:userId', auth.adminAuthenticate, adminAssignmentController.getSubmittedAssignment)
+router.put('/reviewsubmission/:currentsubmissionId/:assignmentId/:submittedUser/:userId', auth.adminAuthenticate, adminAssignmentController.reviewsubmission)
 // router.put('/editproduct/:id', auth.adminAuthenticate,productImageUpload.imageUpload.single('imagefile'), adminProductController.updateProduct)
 // router.delete('/deleteproduct/:id', auth.adminAuthenticate, adminProductController.removeProduct)
 

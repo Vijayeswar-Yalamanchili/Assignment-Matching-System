@@ -35,6 +35,7 @@ const ApiRoutes = {
         path : '/candidates/getsubmittedassignment',
         authenticate : true
     },
+    
 
 
     // USERPROFILEUPDATE : {
@@ -111,46 +112,54 @@ const ApiRoutes = {
         path : '/admin/getcurrentassignment',
         authenticate : true
     },
-    ADMINPROFILEUSER : {
-        path : '/admin/getcurrentuser',
+    ADMINGETSUBMITTEDTASK : {
+        path : '/admin/getsubmittedassignment',
         authenticate : true
     },
-    ADMINUPDATEPROFILEUSER : {
-        path : '/admin/updatecurrentuser',
+    ADMINREVIEWSUBMISSION : {
+        path : '/admin/reviewsubmission',
         authenticate : true
     },
-    ADMINEDITUSER : {
-        path : '/admin/edituser',
-        authenticate : true
-    },
-    ADMINDELETEUSER : {
-        path : '/admin/deleteuser',
-        authenticate : true
-    },
-    ADMINADDPRODUCT : {
-        path : '/admin/addproduct',
-        authenticate : true
-    },
-    ADMINGETPRODUCT : {
-        path : '/admin/getallproducts',
-        authenticate : true
-    },
-    ADMINGETORDER : {
-        path : '/admin/getallorders',
-        authenticate : true
-    },
-    ADMINEDITPRODUCT : {
-        path : '/admin/editproduct',
-        authenticate : true
-    },
-    ADMINDELETEPRODUCT : {
-        path : '/admin/deleteproduct',
-        authenticate : true
-    },
-    ADMINGETALLORDERS : {
-        path :'/admin/myorders',
-        authenticate : false
-    },
+    // ADMINPROFILEUSER : {
+    //     path : '/admin/getcurrentuser',
+    //     authenticate : true
+    // },
+    // ADMINUPDATEPROFILEUSER : {
+    //     path : '/admin/updatecurrentuser',
+    //     authenticate : true
+    // },
+    // ADMINEDITUSER : {
+    //     path : '/admin/edituser',
+    //     authenticate : true
+    // },
+    // ADMINDELETEUSER : {
+    //     path : '/admin/deleteuser',
+    //     authenticate : true
+    // },
+    // ADMINADDPRODUCT : {
+    //     path : '/admin/addproduct',
+    //     authenticate : true
+    // },
+    // ADMINGETPRODUCT : {
+    //     path : '/admin/getallproducts',
+    //     authenticate : true
+    // },
+    // ADMINGETORDER : {
+    //     path : '/admin/getallorders',
+    //     authenticate : true
+    // },
+    // ADMINEDITPRODUCT : {
+    //     path : '/admin/editproduct',
+    //     authenticate : true
+    // },
+    // ADMINDELETEPRODUCT : {
+    //     path : '/admin/deleteproduct',
+    //     authenticate : true
+    // },
+    // ADMINGETALLORDERS : {
+    //     path :'/admin/myorders',
+    //     authenticate : false
+    // },
 }
 
 export default ApiRoutes

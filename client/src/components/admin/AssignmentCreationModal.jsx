@@ -38,7 +38,7 @@ const AssignmentCreationModal = () => {
   }
 
   return <>
-    <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 backdrop-blur-md">
+    <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 backdrop-blur-sm">
       <div className="bg-white p-6 rounded-lg shadow-lg w-140 relative">
         <button onClick={() => dispatch(closeModal())} className="absolute top-3 right-3 text-gray-600 hover:text-gray-900">✖</button>
         <h2 className="text-xl font-semibold mb-4">Create Assignment</h2>

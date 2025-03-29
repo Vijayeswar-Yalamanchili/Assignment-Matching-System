@@ -25,6 +25,28 @@ const SubmissionSchema = new mongoose.Schema({
         type : String,
         required : true
     },
+    result : {
+        type : String,
+        required : false
+    },
+    feedback: { 
+        type: String, 
+        default: '' 
+    },
+    rating: {  
+        codeQuality: { 
+            type: Number, 
+            default: 0 
+        },  
+        functionality: { 
+            type: Number, 
+            default: 0 
+        },  
+        responsiveness: { 
+            type: Number, 
+            default: 0 
+        }
+    },
     submissionDate: {
         type: Date,
         default: Date.now, 

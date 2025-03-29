@@ -30,9 +30,9 @@ const assignmentSchema = new mongoose.Schema({
         required : true
     },
     taskSubmittedBy : {
-        type: [{ userId: String, userName: String }],
+        type: [{ userId: String, userName: String,taskStatus: String, reviewStatus: { type: String, default: "Need to Review" },result : String }],
         default: [] 
-    }
+    },
 },
 { timestamps : true },
 { collection : 'assignments'})
